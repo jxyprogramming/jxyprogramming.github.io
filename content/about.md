@@ -1,6 +1,6 @@
 ---
 date: '2025-06-25T22:25:13+08:00'
-draft: true
+draft: false
 title: '关于我'
 ---
 
