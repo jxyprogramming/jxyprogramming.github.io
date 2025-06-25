@@ -1,0 +1,47 @@
+# GitHub Action 的名字
+name: Deploy Hugo site to Pages
+
+# 触发条件：当代码被推送到 main 分支时
+on:
+  push:
+    branches:
+      - main
+  # 允许你手动在 GitHub 页面上触发这个工作流
+  workflow_dispatch:
+
+# 作业配置
+jobs:
+  # 单个作业，名为 "deploy"
+  deploy:
+    runs-on: ubuntu-latest # 使用最新的 Ubuntu 系统来执行任务
+    steps:
+      # 第一步：检出代码，即下载你的仓库代码到虚拟机
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive  # 必须加上这句，才能把主题文件也下载下来
+
+      # 第二步：设置 Hugo 环境
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3 # 使用一个预先配置好的 Hugo Action
+        with:
+          hugo-version: 'latest' # 使用最新版的 Hugo
+          extended: true
+
+      # 第三步：构建网站
+      # 运行 hugo 命令，将网站文件生成到默认的 public 目录
+      - name: Build
+        run: hugo
+
+      # 第四步：将构建好的网站部署到 GitHub Pages
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          # 这个 personal_token 是自动生成的，你无需关心
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
+          # 指定要发布的文件夹是 public
+          publish_dir: ./public
+          # 发布的仓库地址，这里会自动使用当前仓库
+          # publish_branch: gh-pages # 你可以选择发布到 gh-pages 分支
+          # user_name: 'github-actions[bot]' # 指定提交的用户名
+          # user_email: 'github-actions[bot]@users.noreply.github.com' # 指定提交的邮箱
