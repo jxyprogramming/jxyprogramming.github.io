@@ -1,7 +1,7 @@
 # hugo.toml
 
 # 基础配置
-baseURL = "https://example.com/"  # !!!【重要】上线前请替换为你的网站域名
+baseURL = "hhttps://jxyprogramming.github.io/"  # !!!【重要】上线前请替换为你的网站域名
 languageCode = "zh-cn"            # 网站语言：中文
 title = "Jiang's Page"                # 网站标题
 theme = "PaperMod"                  # 指定使用 PaperMod 主题
