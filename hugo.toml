@@ -1,0 +1,93 @@
+# hugo.toml
+
+# 基础配置
+baseURL = "https://example.com/"  # !!!【重要】上线前请替换为你的网站域名
+languageCode = "zh-cn"            # 网站语言：中文
+title = "Jiang's Page"                # 网站标题
+theme = "PaperMod"                  # 指定使用 PaperMod 主题
+
+# 新的分页配置
+[pagination]
+  pagerSize = 5
+
+# 允许 Hugo 渲染 Markdown 到 HTML
+[outputs]
+  home = ["HTML", "RSS", "JSON"] # 为主页生成 HTML, RSS 和 JSON 格式
+
+# PaperMod 主题的核心参数配置
+[params]
+  # 作者信息
+  author = "姜欣阳"
+  # 网站描述
+  description = "这是我的个人学习笔记网站，使用 Hugo 和 PaperMod搭建。"
+  # 默认主题模式 ('auto', 'light', 'dark')
+  defaultTheme = "auto"
+  # 在文章列表页隐藏描述
+  hideDescription = true
+  # 在文章列表页显示阅读时间
+  showReadingTime = true
+  # 在文章列表页显示字数统计
+  showWordCount = true
+  # 在文章列表页显示文章的分享按钮
+  showShareButtons = true
+  # 在文章末尾显示上一篇/下一篇文章的导航
+  ShowPostNavLinks = true
+  # 是否显示面包屑导航
+  ShowBreadCrumbs = true
+  # 代码块是否显示 "复制" 按钮
+  ShowCodeCopyButtons = true
+  # 是否使用 Hugo 内置的 Chroma 语法高亮
+  UseHugoToc = true
+  # 禁止生成摘要
+  disableSpecial1stPost = true
+
+  # 个人资料模式配置 (主页)
+  [params.profileMode]
+    enabled = true                           # 启用个人资料模式
+    title = "Jiang's Page"                     # 显示在头像下方的标题
+    subtitle = "在这里，我记录知识、分享思考、见证成长。" # 副标题
+    imageUrl = "/images/avatar.jpg"          # 【可选】你的头像图片路径
+    imageWidth = 120                         # 头像宽度
+    imageHeight = 120                        # 头像高度
+
+    # 个人资料下方的按钮
+    [[params.profileMode.buttons]]
+      name = "文章"
+      url = "/posts"
+    [[params.profileMode.buttons]]
+      name = "关于"
+      url = "/about"
+
+  # 社交图标配置
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/jxyprogramming"  # !!!【重要】替换为你的 GitHub 地址
+
+  [[params.socialIcons]]
+    name = "email"
+    url = "mailto:3230103079@zju.edu.cn" # !!!【重要】替换为你的邮箱
+
+# 主菜单配置 (会显示在网站顶部导航栏)
+[[menu.main]]
+  identifier = "posts"
+  name = "📚 文章"
+  url = "/posts/"
+  weight = 10
+
+[[menu.main]]
+  identifier = "archives"
+  name = "归档"
+  url = "/archives/"
+  weight = 20
+
+[[menu.main]]
+  identifier = "search"
+  name = "🔍 搜索"
+  url = "/search/"
+  weight = 30
+
+[[menu.main]]
+  identifier = "tags"
+  name = "标签"
+  url = "/tags/"
+  weight = 40
